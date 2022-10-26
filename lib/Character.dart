@@ -1,16 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_project/Favcharacters.dart';
-import 'package:new_project/Models/charactermodel.dart';
-import 'package:http/http.dart' as http;
 import 'package:new_project/Provider/data_provider.dart';
 import 'package:new_project/Widegts/FavouriteCard.dart';
-
-import 'Widegts/Cards.dart';
 
 class Home extends ConsumerWidget {
   const Home({Key? key}) : super(key: key);
@@ -69,8 +61,5 @@ class Home extends ConsumerWidget {
             ),
           )),
     );
-
-    // TODO: implement build
-    throw UnimplementedError();
   }
 }

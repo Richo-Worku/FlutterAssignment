@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_project/Models/charactermodel.dart';
 import 'package:new_project/charactert.dart';
-
-import '../Provider/data_provider.dart';
 
 final database = MyDatabase();
 
@@ -25,9 +21,7 @@ insertToDrift(idd, names, gender) async {
 
 Widget Cards(String name, String string2, int id, BuildContext context,
     String imgpath, WidgetRef ref, Results h) {
-  final _data = ref.watch(userDataProvider);
   var savedWords = <Results>[];
-  bool issaved = false;
 
   return Container(
     width: MediaQuery.of(context).size.width,

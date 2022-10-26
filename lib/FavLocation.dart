@@ -1,13 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:new_project/Models/charactermodel.dart';
-import 'package:http/http.dart' as http;
 import 'package:new_project/locationt.dart';
 
-import 'Widegts/Cards.dart';
 import 'Widegts/FavCards.dart';
 
 class FavLocation extends StatefulWidget {
@@ -33,7 +26,6 @@ class _FavLocationState extends State<FavLocation> {
   @override
   void initState() {
     getdata();
-    // TODO: implement initState
     super.initState();
   }
 

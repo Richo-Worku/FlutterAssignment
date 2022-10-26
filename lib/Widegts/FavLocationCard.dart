@@ -1,10 +1,6 @@
 import 'dart:core';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:new_project/Models/charactermodel.dart';
 
 import '../locationt.dart';
 import 'customSnackBarContent.dart';
@@ -61,7 +57,6 @@ class _FavLocationCardState extends State<FavLocationCard> {
   @override
   void initState() {
     checkexistance(widget.id);
-    // TODO: implement initState
     super.initState();
   }
 

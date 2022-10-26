@@ -1,19 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_project/FavLocation.dart';
-import 'package:new_project/Favcharacters.dart';
-import 'package:new_project/Models/charactermodel.dart';
-import 'package:http/http.dart' as http;
-import 'package:new_project/Provider/data_provider.dart';
-import 'package:new_project/Provider/loc_provider.dart';
-import 'package:new_project/Widegts/FavCards.dart';
-import 'package:new_project/Widegts/LocationCards.dart';
 
-import 'Widegts/Cards.dart';
+import 'package:new_project/Provider/loc_provider.dart';
+
 import 'Widegts/FavLocationCard.dart';
 
 class Location extends ConsumerWidget {
@@ -68,8 +58,5 @@ class Location extends ConsumerWidget {
             ),
           )),
     );
-
-    // TODO: implement build
-    throw UnimplementedError();
   }
 }

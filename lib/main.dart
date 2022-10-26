@@ -110,6 +110,7 @@ class _SliderModel {
     required this.imageAssetPath,
     this.title = "",
     this.desc = "",
+    // ignore: unused_element
     this.miniDescFontSize = 12.0,
     this.minTitleFontSize = 15.0,
     this.descStyle = const TextStyle(

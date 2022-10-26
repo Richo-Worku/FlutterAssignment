@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_project/Models/locationmodel.dart';
 
-import '../Models/charactermodel.dart';
 import 'package:http/http.dart' as http;
 
 class ApiLocService {

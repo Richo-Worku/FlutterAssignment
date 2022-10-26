@@ -1,20 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_project/FavEpisode.dart';
-import 'package:new_project/Favcharacters.dart';
-import 'package:new_project/Models/charactermodel.dart';
-import 'package:http/http.dart' as http;
-import 'package:new_project/Provider/data_provider.dart';
-import 'package:new_project/Provider/loc_provider.dart';
-import 'package:new_project/Widegts/EpisodeCard.dart';
 import 'package:new_project/Widegts/FavEpisodeCard.dart';
 
 import 'Provider/episode_provider.dart';
-import 'Widegts/Cards.dart';
 
 class Episode extends ConsumerWidget {
   const Episode({Key? key}) : super(key: key);
@@ -68,8 +57,5 @@ class Episode extends ConsumerWidget {
             ),
           )),
     );
-
-    // TODO: implement build
-    throw UnimplementedError();
   }
 }
