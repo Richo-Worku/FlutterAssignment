@@ -1,0 +1,6 @@
+CREATE TABLE episode (
+  firstid INT NOT NULL PRIMARY KEY AUTOINCREMENT,
+    id INT NOT NULL,
+    name varchar NOT NULL,
+  episode varchar NOT NULL,
+);

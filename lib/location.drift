@@ -1,0 +1,6 @@
+CREATE TABLE location (
+  firstid INT NOT NULL PRIMARY KEY AUTOINCREMENT,
+    id INT NOT NULL,
+    name varchar NOT NULL,
+  type varchar NOT NULL,
+);

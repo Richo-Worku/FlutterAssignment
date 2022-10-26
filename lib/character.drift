@@ -1,0 +1,7 @@
+CREATE TABLE Character (
+  firstid INT NOT NULL PRIMARY KEY AUTOINCREMENT,
+    id INT NOT NULL,
+    name varchar NOT NULL,
+  gender varchar NOT NULL,
+
+);
