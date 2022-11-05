@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:new_project/Data/Models/charactermodel.dart';
 import 'package:new_project/UI/Screens/charactert.dart';
 
+import '../Widegts/customSnackBarContent.dart';
+
 class FavouriteCard extends StatefulWidget {
   final String name;
   final String gender;
