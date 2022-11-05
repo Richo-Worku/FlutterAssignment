@@ -2,9 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:new_project/Data/Models/charactermodel.dart';
-
-import '../../charactert.dart';
-import 'customSnackBarContent.dart';
+import 'package:new_project/UI/Screens/charactert.dart';
 
 class FavouriteCard extends StatefulWidget {
   final String name;
