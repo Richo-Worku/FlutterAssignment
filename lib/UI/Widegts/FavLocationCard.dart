@@ -2,7 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 
-import '../locationt.dart';
+import '../Screens/locationt.dart';
 import 'customSnackBarContent.dart';
 
 class FavLocationCard extends StatefulWidget {

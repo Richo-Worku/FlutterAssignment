@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:new_project/Favcharacters.dart';
-import 'package:new_project/Provider/data_provider.dart';
-import 'package:new_project/Widegts/FavouriteCard.dart';
+import 'package:new_project/Data/Provider/episode_provider.dart';
+import 'package:new_project/UI/Screens/FavEpisode.dart';
+import 'package:new_project/UI/Widegts/FavEpisodeCard.dart';
 
-class Home extends ConsumerWidget {
-  const Home({Key? key}) : super(key: key);
+class Episode extends ConsumerWidget {
+  const Episode({Key? key}) : super(key: key);
 
   @override
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _data = ref.watch(userDataProvider);
+    final _data = ref.watch(EpisodeDataProvider);
 
     return SafeArea(
       child: Scaffold(
@@ -18,7 +18,7 @@ class Home extends ConsumerWidget {
             centerTitle: true,
             backgroundColor: Color.fromARGB(255, 252, 251, 251),
             title: Text(
-              'Characters',
+              'Episodes',
               style: TextStyle(color: Colors.orange),
             ),
             actions: [
@@ -27,7 +27,7 @@ class Home extends ConsumerWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const FavCharacters()));
+                            builder: (context) => const FavEpisode()));
                   },
                   icon: Icon(
                     Icons.favorite,
@@ -43,13 +43,8 @@ class Home extends ConsumerWidget {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          ..._data.map((e) => FavouriteCard(
-                              name: e.name,
-                              gender: e.gender,
-                              id: e.id,
-                              image: e.image,
-                              h: e,
-                              data: _data))
+                          ..._data.map((e) => FavEpisodeCard(
+                              name: e.name, episode: e.episode, id: e.id))
                         ],
                       );
                     },

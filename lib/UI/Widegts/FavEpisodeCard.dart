@@ -2,7 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 
-import '../episodet.dart';
+import '../Screens/episodet.dart';
 import 'customSnackBarContent.dart';
 
 class FavEpisodeCard extends StatefulWidget {

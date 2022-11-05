@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:new_project/locationt.dart';
+
+import '../Screens/charactert.dart';
+
+final database = MyDatabase();
 
 insertToDrift(idd, names, gender) async {
   final database = MyDatabase();
   await database
-      .into(database.location)
-      .insert(LocationCompanion.insert(id: idd, name: names, type: gender));
+      .into(database.character)
+      .insert(CharacterCompanion.insert(id: idd, name: names, gender: gender));
 
-  final allcharacters = await database.select(database.location).get();
+  final allcharacters = await database.select(database.character).get();
   print('Characters in database: $allcharacters');
 
   //await database.delete(database.character).go();
   print('Characters in database: $allcharacters');
 }
 
-Widget LocationCards(String name, String type, int id, BuildContext context) {
+Widget FavCards(String name, String string2, int id, BuildContext context) {
   return Container(
     width: MediaQuery.of(context).size.width,
     child: SingleChildScrollView(
@@ -69,25 +72,13 @@ Widget LocationCards(String name, String type, int id, BuildContext context) {
                     Row(
                       children: [
                         Text(
-                          type,
+                          string2,
                           style: TextStyle(
                               color: Color.fromARGB(255, 28, 153, 38),
                               fontSize: 17),
                         ),
                       ],
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        insertToDrift(id, name, type);
-                      },
-                      child: Container(
-                        child: Icon(
-                          Icons.favorite,
-                          color: Colors.grey,
-                        ),
-                        //color: Colors.orangeAccent,
-                      ),
-                    )
                   ],
                 ),
               ],

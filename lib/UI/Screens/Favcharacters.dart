@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:new_project/locationt.dart';
 
-import 'Widegts/FavCards.dart';
+import '../Widegts/FavCards.dart';
+import 'charactert.dart';
 
-class FavLocation extends StatefulWidget {
-  const FavLocation({Key? key}) : super(key: key);
+class FavCharacters extends StatefulWidget {
+  const FavCharacters({Key? key}) : super(key: key);
 
   @override
-  State<FavLocation> createState() => _FavLocationState();
+  State<FavCharacters> createState() => _FavCharactersState();
 }
 
-class _FavLocationState extends State<FavLocation> {
-  var list = <LocationData>[];
-  var list2 = <LocationData>[];
+class _FavCharactersState extends State<FavCharacters> {
+  var list = <CharacterData>[];
+  var list2 = <CharacterData>[];
 
   getdata() async {
     final database = MyDatabase();
-    list = await database.select(database.location).get();
+    list = await database.select(database.character).get();
 
     setState(() {
       list2 = list;
@@ -26,6 +26,7 @@ class _FavLocationState extends State<FavLocation> {
   @override
   void initState() {
     getdata();
+    // getCharacters();
     super.initState();
   }
 
@@ -44,7 +45,7 @@ class _FavLocationState extends State<FavLocation> {
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 252, 251, 251),
         title: Text(
-          'Favourite Location',
+          'Favourite Characters',
           style: TextStyle(color: Colors.orange),
         ),
       ),
@@ -61,7 +62,7 @@ class _FavLocationState extends State<FavLocation> {
                       child: ListView.builder(
                         itemCount: list.length,
                         itemBuilder: (context, index) {
-                          return FavCards(list[index].name, list[index].type,
+                          return FavCards(list[index].name, list[index].gender,
                               list[index].id, context);
                         },
                       ),

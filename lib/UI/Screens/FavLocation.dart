@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:new_project/UI/Screens/locationt.dart';
+import 'package:new_project/UI/Widegts/FavCards.dart';
 
-import 'package:new_project/episodet.dart';
-
-import 'Widegts/FavCards.dart';
-
-class FavEpisode extends StatefulWidget {
-  const FavEpisode({Key? key}) : super(key: key);
+class FavLocation extends StatefulWidget {
+  const FavLocation({Key? key}) : super(key: key);
 
   @override
-  State<FavEpisode> createState() => _FavEpisodeState();
+  State<FavLocation> createState() => _FavLocationState();
 }
 
-class _FavEpisodeState extends State<FavEpisode> {
-  var list = <EpisodeData>[];
-  var list2 = <EpisodeData>[];
+class _FavLocationState extends State<FavLocation> {
+  var list = <LocationData>[];
+  var list2 = <LocationData>[];
 
   getdata() async {
     final database = MyDatabase();
-    list = await database.select(database.episode).get();
+    list = await database.select(database.location).get();
 
     setState(() {
       list2 = list;
@@ -27,7 +25,6 @@ class _FavEpisodeState extends State<FavEpisode> {
   @override
   void initState() {
     getdata();
-
     super.initState();
   }
 
@@ -46,7 +43,7 @@ class _FavEpisodeState extends State<FavEpisode> {
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 252, 251, 251),
         title: Text(
-          'Favourite Episodes',
+          'Favourite Location',
           style: TextStyle(color: Colors.orange),
         ),
       ),
@@ -55,8 +52,6 @@ class _FavEpisodeState extends State<FavEpisode> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              //  SizedBox(height: 5),
-              SizedBox(height: 15),
               SingleChildScrollView(
                 child: Container(
                     height: MediaQuery.of(context).size.height - 165,
@@ -65,7 +60,7 @@ class _FavEpisodeState extends State<FavEpisode> {
                       child: ListView.builder(
                         itemCount: list.length,
                         itemBuilder: (context, index) {
-                          return FavCards(list[index].name, list[index].episode,
+                          return FavCards(list[index].name, list[index].type,
                               list[index].id, context);
                         },
                       ),

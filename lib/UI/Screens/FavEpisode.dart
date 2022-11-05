@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:new_project/charactert.dart';
+import 'package:new_project/UI/Screens/episodet.dart';
+import 'package:new_project/UI/Widegts/FavCards.dart';
 
-import 'Widegts/FavCards.dart';
-
-class FavCharacters extends StatefulWidget {
-  const FavCharacters({Key? key}) : super(key: key);
+class FavEpisode extends StatefulWidget {
+  const FavEpisode({Key? key}) : super(key: key);
 
   @override
-  State<FavCharacters> createState() => _FavCharactersState();
+  State<FavEpisode> createState() => _FavEpisodeState();
 }
 
-class _FavCharactersState extends State<FavCharacters> {
-  var list = <CharacterData>[];
-  var list2 = <CharacterData>[];
+class _FavEpisodeState extends State<FavEpisode> {
+  var list = <EpisodeData>[];
+  var list2 = <EpisodeData>[];
 
   getdata() async {
     final database = MyDatabase();
-    list = await database.select(database.character).get();
+    list = await database.select(database.episode).get();
 
     setState(() {
       list2 = list;
@@ -26,7 +25,7 @@ class _FavCharactersState extends State<FavCharacters> {
   @override
   void initState() {
     getdata();
-    // getCharacters();
+
     super.initState();
   }
 
@@ -45,7 +44,7 @@ class _FavCharactersState extends State<FavCharacters> {
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 252, 251, 251),
         title: Text(
-          'Favourite Characters',
+          'Favourite Episodes',
           style: TextStyle(color: Colors.orange),
         ),
       ),
@@ -54,6 +53,8 @@ class _FavCharactersState extends State<FavCharacters> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              //  SizedBox(height: 5),
+              SizedBox(height: 15),
               SingleChildScrollView(
                 child: Container(
                     height: MediaQuery.of(context).size.height - 165,
@@ -62,7 +63,7 @@ class _FavCharactersState extends State<FavCharacters> {
                       child: ListView.builder(
                         itemCount: list.length,
                         itemBuilder: (context, index) {
-                          return FavCards(list[index].name, list[index].gender,
+                          return FavCards(list[index].name, list[index].episode,
                               list[index].id, context);
                         },
                       ),

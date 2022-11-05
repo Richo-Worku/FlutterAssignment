@@ -1,9 +1,10 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:new_project/homepage.dart';
 import 'package:onboarding_screen/onboarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'UI/Screens/bottomnavigation.dart';
 
 int? isviewed;
 
@@ -37,13 +38,13 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color.fromARGB(255, 255, 255, 255),
           showLoader: true,
           loadingText: Text("Loading..."),
-          navigator: isviewed != 0 ? MyHomePage() : HomePage(),
+          navigator: isviewed != 0 ? OnboardScreen() : HomePage(),
           durationInSeconds: 5,
         ));
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class OnboardScreen extends StatelessWidget {
   final List<_SliderModel> mySlides = [
     _SliderModel(
       imageAssetPath: Image.asset(

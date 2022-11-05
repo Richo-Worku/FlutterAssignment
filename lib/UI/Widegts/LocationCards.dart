@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:new_project/episodet.dart';
 
-insertToDrift(idd, names, episode) async {
+import '../Screens/locationt.dart';
+
+insertToDrift(idd, names, gender) async {
   final database = MyDatabase();
   await database
-      .into(database.episode)
-      .insert(EpisodeCompanion.insert(id: idd, name: names, episode: episode));
+      .into(database.location)
+      .insert(LocationCompanion.insert(id: idd, name: names, type: gender));
 
-  final allcharacters = await database.select(database.episode).get();
+  final allcharacters = await database.select(database.location).get();
   print('Characters in database: $allcharacters');
 
-  //await database.delete(database.episode).go();
-  //print('Characters in database: $allcharacters');
+  //await database.delete(database.character).go();
+  print('Characters in database: $allcharacters');
 }
 
-Widget EpisodeCards(String name, String episode, int id, BuildContext context) {
+Widget LocationCards(String name, String type, int id, BuildContext context) {
   return Container(
     width: MediaQuery.of(context).size.width,
     child: SingleChildScrollView(
@@ -69,7 +70,7 @@ Widget EpisodeCards(String name, String episode, int id, BuildContext context) {
                     Row(
                       children: [
                         Text(
-                          episode,
+                          type,
                           style: TextStyle(
                               color: Color.fromARGB(255, 28, 153, 38),
                               fontSize: 17),
@@ -78,7 +79,7 @@ Widget EpisodeCards(String name, String episode, int id, BuildContext context) {
                     ),
                     GestureDetector(
                       onTap: () {
-                        insertToDrift(id, name, episode);
+                        insertToDrift(id, name, type);
                       },
                       child: Container(
                         child: Icon(

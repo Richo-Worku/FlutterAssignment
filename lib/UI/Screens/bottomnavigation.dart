@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_project/Location.dart';
+import 'package:new_project/UI/Screens/Location.dart';
 
 import 'Character.dart';
 import 'episode.dart';

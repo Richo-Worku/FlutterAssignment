@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:new_project/FavLocation.dart';
+import 'package:new_project/Data/Provider/loc_provider.dart';
 
-import 'package:new_project/Provider/loc_provider.dart';
-
-import 'Widegts/FavLocationCard.dart';
+import 'package:new_project/UI/Screens/FavLocation.dart';
+import 'package:new_project/UI/Widegts/FavLocationCard.dart';
 
 class Location extends ConsumerWidget {
   const Location({Key? key}) : super(key: key);

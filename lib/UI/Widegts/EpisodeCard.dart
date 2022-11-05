@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:new_project/charactert.dart';
 
-final database = MyDatabase();
+import '../Screens/episodet.dart';
 
-insertToDrift(idd, names, gender) async {
+insertToDrift(idd, names, episode) async {
   final database = MyDatabase();
   await database
-      .into(database.character)
-      .insert(CharacterCompanion.insert(id: idd, name: names, gender: gender));
+      .into(database.episode)
+      .insert(EpisodeCompanion.insert(id: idd, name: names, episode: episode));
 
-  final allcharacters = await database.select(database.character).get();
+  final allcharacters = await database.select(database.episode).get();
   print('Characters in database: $allcharacters');
 
-  //await database.delete(database.character).go();
-  print('Characters in database: $allcharacters');
+  //await database.delete(database.episode).go();
+  //print('Characters in database: $allcharacters');
 }
 
-Widget FavCards(String name, String string2, int id, BuildContext context) {
+Widget EpisodeCards(String name, String episode, int id, BuildContext context) {
   return Container(
     width: MediaQuery.of(context).size.width,
     child: SingleChildScrollView(
@@ -71,13 +70,25 @@ Widget FavCards(String name, String string2, int id, BuildContext context) {
                     Row(
                       children: [
                         Text(
-                          string2,
+                          episode,
                           style: TextStyle(
                               color: Color.fromARGB(255, 28, 153, 38),
                               fontSize: 17),
                         ),
                       ],
                     ),
+                    GestureDetector(
+                      onTap: () {
+                        insertToDrift(id, name, episode);
+                      },
+                      child: Container(
+                        child: Icon(
+                          Icons.favorite,
+                          color: Colors.grey,
+                        ),
+                        //color: Colors.orangeAccent,
+                      ),
+                    )
                   ],
                 ),
               ],
