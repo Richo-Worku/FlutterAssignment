@@ -14,11 +14,11 @@ class ApiService {
     final res = await http
         .get(Uri.parse(link), headers: {"Accept": "application/json"});
 
-    print(res.body);
+    // print(res.body);
     if (res.statusCode == 200) {
       var data = json.decode(res.body);
       var rest = data["results"] as List;
-      print(rest);
+      //   print(rest);
 
       list = rest.map<Results>((json) => Results.fromJson(json)).toList();
     }

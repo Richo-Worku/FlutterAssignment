@@ -4,14 +4,14 @@ import 'package:new_project/UI/Screens/Location.dart';
 import 'Character.dart';
 import 'episode.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class BottomNav extends StatefulWidget {
+  const BottomNav({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<BottomNav> createState() => _BottomNavState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _BottomNavState extends State<BottomNav> {
   int currentIndex = 0;
 
   selector(index) {

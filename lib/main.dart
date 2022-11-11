@@ -1,15 +1,80 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:easy_splash_screen/easy_splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:new_project/UI/Screens/Character.dart';
+import 'package:new_project/UI/Screens/bottomnavigation.dart';
+import 'package:new_project/UI/Screens/login.dart';
 import 'package:onboarding_screen/onboarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'UI/Screens/bottomnavigation.dart';
 
 int? isviewed;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  AwesomeNotifications().initialize('resource://drawable/award1', [
+    // notification icon
+    NotificationChannel(
+      channelGroupKey: 'basic_test',
+      channelKey: 'basic',
+      channelName: 'Basic notifications',
+      channelDescription: 'Notification channel for basic tests',
+      channelShowBadge: true,
+      importance: NotificationImportance.High,
+      enableVibration: true,
+    ),
+
+    NotificationChannel(
+        channelGroupKey: 'image_test',
+        channelKey: 'image',
+        channelName: 'image notifications',
+        channelDescription: 'Notification channel for image tests',
+        defaultColor: Colors.redAccent,
+        ledColor: Colors.white,
+        channelShowBadge: true,
+        importance: NotificationImportance.High)
+
+    //add more notification type with different configuration
+  ]);
+
+  late final FirebaseMessaging _messaging = FirebaseMessaging.instance;
+
+  NotificationSettings settings = await _messaging.requestPermission(
+    alert: true,
+    badge: true,
+    provisional: false,
+    sound: true,
+  );
+  print(settings.authorizationStatus);
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+    bool isallowed = await AwesomeNotifications().isNotificationAllowed();
+    if (!isallowed) {
+      //no permission of local notification
+      AwesomeNotifications().requestPermissionToSendNotifications();
+    } else {
+      //show notification
+      AwesomeNotifications().createNotification(
+          content: NotificationContent(
+        //simgple notification
+        id: 123,
+        channelKey: 'basic', //set configuration wuth key "basic"
+        title: message.notification!.title,
+        body: message.notification!.body,
+      ));
+    }
+    // Parse the message received
+    // PushNotification notification = PushNotification(
+    //   title: message.notification?.title,chr
+    //   body: message.notification?.body,
+    // );
+    // print(notification.title);
+    // print(notification.body);
+  });
+
   SharedPreferences prefs = await SharedPreferences.getInstance();
   isviewed = prefs.getInt('onBoard');
   await prefs.setInt("onBoard", 0);
@@ -38,7 +103,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color.fromARGB(255, 255, 255, 255),
           showLoader: true,
           loadingText: Text("Loading..."),
-          navigator: isviewed != 0 ? OnboardScreen() : HomePage(),
+          navigator: isviewed != 0 ? OnboardScreen() : PhoneAuthForm(),
           durationInSeconds: 5,
         ));
   }
@@ -80,14 +145,11 @@ class OnboardScreen extends StatelessWidget {
         'Get Started',
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
       ),
-
-      /// This function works when you will complete `OnBoarding`
       function: () {
         print('Navigation');
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const HomePage()));
+            context, MaterialPageRoute(builder: (context) => Home()));
       },
-
       mySlides: mySlides,
       controller: _controller,
       slideIndex: 0,
